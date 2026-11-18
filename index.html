@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G2 Decants - Perfumes Importados em Decants</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --navy-dark: #060e1a;
+            --navy: #0a1a30;
+            --navy-medium: #0f2440;
+            --navy-light: #152d50;
+            --white: #ffffff;
+            --white-off: #f5f3f0;
+            --text-dark: #1a1a1a;
+            --text-medium: #4a4a4a;
+            --text-light: #6b6b6b;
+            --text-white: #e8e6e3;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+            --shadow-md: 0 4px 16px rgba(0,0,0,0.1);
+            --shadow-lg: 0 8px 28px rgba(0,0,0,0.15);
+            --radius-sm: 6px;
+            --radius-md: 10px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+            --transition: all 0.3s ease;
+            --gold: #b8944b;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--white-off);
+            color: var(--text-dark);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .header {
+            background: var(--navy);
+            padding: 8px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-md);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .logo-area {
+            display: flex;
+            align-items: center;
+            height: 64px;
+        }
+        .brand-name-text {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.4rem;
+            color: var(--white);
+            line-height: 1;
+            letter-spacing: 1px;
+            white-space: nowrap;
+            text-decoration: none;
+        }
+        .header-icons { display: flex; align-items: center; gap: 8px; }
+        .cart-icon-btn {
+            background: none; border: none; color: var(--white); font-size: 1.2rem; cursor: pointer;
+            position: relative; padding: 10px; border-radius: 50%; width: 42px; height: 42px;
+            display: flex; align-items: center; justify-content: center; transition: var(--transition);
+        }
+        .cart-icon-btn:hover { background: rgba(255,255,255,0.06); color: var(--white); }
+        .cart-badge {
+            position: absolute; top: 4px; right: 4px; background: var(--navy-light); color: var(--white);
+            font-size: 0.65rem; font-weight: 700; width: 19px; height: 19px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; line-height: 1; transition: transform 0.2s ease;
+        }
+        .cart-badge.pulse { transform: scale(1.4); }
+
+        .carousel-section {
+            position: relative; width: 100%; height: 50vh; min-height: 320px; max-height: 420px;
+            overflow: hidden; background: var(--navy-dark);
+        }
+        .carousel-track { display: flex; height: 100%; transition: transform 0.6s cubic-bezier(0.4,0,0.2,1); }
+        .carousel-slide {
+            min-width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
+            position: relative;
+        }
+        .carousel-slide::before { content: ''; position: absolute; inset: 0; background: rgba(6,14,26,0.65); z-index: 1; }
+        .slide-1 { background: linear-gradient(135deg, #020810 0%, #0a1a30 50%, #0f2440 100%); }
+        .slide-2 { background: linear-gradient(135deg, #0a1a30 0%, #0f2440 50%, #0a1a30 100%); }
+        .slide-3 { background: linear-gradient(135deg, #0f2440 0%, #0a1a30 50%, #020810 100%); }
+        .slide-content {
+            position: relative; z-index: 2; text-align: center; color: var(--white);
+            max-width: 500px; padding: 0 30px; animation: slideFadeIn 0.8s ease forwards;
+        }
+        @keyframes slideFadeIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .slide-icon { font-size: 2.5rem; color: var(--white); margin-bottom: 12px; display: block; opacity: 0.9; }
+        .slide-content h2 {
+            font-family: 'Playfair Display', serif; font-size: clamp(1.5rem, 3.5vw, 2rem);
+            font-weight: 700; letter-spacing: -0.5px; margin-bottom: 8px; line-height: 1.2;
+        }
+        .slide-content p { font-size: 0.9rem; color: var(--text-white); opacity: 0.85; margin-bottom: 16px; line-height: 1.5; }
+        .slide-content .slide-btn {
+            display: inline-flex; align-items: center; gap: 8px; padding: 10px 24px; border-radius: 50px;
+            background: var(--navy-light); color: var(--white); font-weight: 700; font-size: 0.85rem;
+            text-decoration: none; letter-spacing: 0.5px; transition: var(--transition);
+            box-shadow: 0 6px 20px rgba(10,26,48,0.5);
+        }
+        .slide-content .slide-btn:hover { background: var(--navy); transform: translateY(-2px); }
+        .carousel-controls { position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%); z-index: 3; display: flex; gap: 8px; }
+        .carousel-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.35); border: none; cursor: pointer; transition: var(--transition); }
+        .carousel-dot.active { background: var(--white); transform: scale(1.3); }
+        .carousel-arrow {
+            position: absolute; top: 50%; transform: translateY(-50%); z-index: 3;
+            background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); color: var(--white);
+            width: 36px; height: 36px; border-radius: 50%; cursor: pointer; font-size: 0.9rem;
+            transition: var(--transition); display: flex; align-items: center; justify-content: center; backdrop-filter: blur(4px);
+        }
+        .carousel-arrow:hover { background: var(--navy-light); border-color: var(--white); }
+        .carousel-arrow.prev { left: 20px; } .carousel-arrow.next { right: 20px; }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+        .section-title { text-align: center; margin: 50px 0 10px; font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: var(--navy-dark); letter-spacing: -0.3px; }
+        .section-subtitle { text-align: center; font-size: 0.85rem; letter-spacing: 2px; color: var(--navy); text-transform: uppercase; font-weight: 600; margin-bottom: 6px; }
+        .section-line { width: 50px; height: 3px; background: var(--navy); margin: 0 auto 40px; border-radius: 2px; }
+
+        .tap-hint {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: var(--navy);
+            color: var(--white);
+            padding: 12px 20px;
+            border-radius: 50px;
+            margin: 0 auto 28px;
+            max-width: 450px;
+            font-weight: 600;
+            font-size: 0.88rem;
+            text-align: center;
+            box-shadow: 0 4px 14px rgba(10,26,48,0.25);
+            animation: pulseHint 2s infinite;
+            letter-spacing: 0.2px;
+        }
+        .tap-hint i {
+            font-size: 1.3rem;
+            animation: tapIcon 1.5s infinite;
+        }
+        @keyframes pulseHint {
+            0%, 100% { box-shadow: 0 4px 14px rgba(10,26,48,0.25); }
+            50% { box-shadow: 0 6px 22px rgba(10,26,48,0.45); }
+        }
+        @keyframes tapIcon {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
+        }
+
+        .perfumes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+            margin-bottom: 50px;
+            align-items: stretch;
+        }
+        .perfume-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #e8e4dd;
+            height: 100%;
+            position: relative;
+        }
+        .perfume-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); border-color: transparent; }
+
+        .perfume-card .coming-soon-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            z-index: 5;
+            background: var(--navy);
+            color: var(--white);
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            padding: 6px 14px;
+            border-radius: 50px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 12px rgba(10,26,48,0.4);
+            pointer-events: none;
+        }
+
+        .perfume-image {
+            aspect-ratio: 1 / 1;
+            width: 100%;
+            position: relative;
+            background: #f0ece6;
+            cursor: pointer;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        .perfume-image img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.5s ease;
+            z-index: 2;
+        }
+        .perfume-card:hover .perfume-image img { transform: scale(1.06); }
+
+        .perfume-image .placeholder-fallback {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(145deg, #f9f7f4 0%, #efe9e0 100%);
+            z-index: 1;
+            font-size: 4rem;
+            color: #c0b098;
+        }
+        .perfume-image .view-overlay {
+            position: absolute; inset: 0; background: rgba(10,26,48,0.6); z-index: 3;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            opacity: 0; transition: opacity 0.3s ease; color: white; font-size: 1.8rem;
+            gap: 6px;
+        }
+        .perfume-image .view-overlay span {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            background: rgba(255,255,255,0.2);
+            padding: 4px 12px;
+            border-radius: 50px;
+            margin-top: 4px;
+        }
+        .perfume-image:hover .view-overlay { opacity: 1; }
+
+        .perfume-info {
+            padding: 20px 18px 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            flex: 1;
+        }
+        .perfume-brand { font-size: 0.7rem; letter-spacing: 2px; color: var(--navy-medium); text-transform: uppercase; font-weight: 600; }
+        .perfume-name { font-family: 'Playfair Display', serif; font-weight: 600; font-size: 1.1rem; color: var(--navy-dark); line-height: 1.3; }
+        .volume-options { display: flex; gap: 8px; flex-wrap: wrap; }
+        .volume-btn {
+            flex: 1; min-width: 55px; padding: 8px 6px; border-radius: 50px; border: 1.5px solid #dcd5cc;
+            background: var(--white); cursor: pointer; font-weight: 600; font-size: 0.8rem; color: var(--text-medium);
+            transition: var(--transition); text-align: center; line-height: 1.2; white-space: nowrap;
+        }
+        .volume-btn:hover { border-color: var(--navy); color: var(--navy-dark); background: #f5f7fa; }
+        .volume-btn.selected { background: var(--navy); color: var(--white); border-color: var(--navy); box-shadow: 0 2px 10px rgba(10,26,48,0.3); }
+        .volume-btn small { display: block; font-weight: 400; font-size: 0.65rem; opacity: 0.8; }
+        .perfume-price { font-weight: 700; font-size: 1.3rem; color: var(--navy-dark); margin-top: 4px; }
+        .btn-add {
+            width: 100%; padding: 12px; border-radius: 50px; background: var(--navy); color: var(--white);
+            border: none; cursor: pointer; font-weight: 600; font-size: 0.9rem; letter-spacing: 0.5px;
+            transition: var(--transition); display: flex; align-items: center; justify-content: center; gap: 8px;
+            margin-top: auto;
+        }
+        .btn-add:hover { background: var(--navy-light); color: var(--white); box-shadow: var(--shadow-md); }
+
+        .btn-add.coming-soon-btn {
+            background: #e8e4dd;
+            color: #8a8076;
+            cursor: not-allowed;
+            pointer-events: none;
+            border: 1px dashed #c4bbb0;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
+        .btn-add.coming-soon-btn:hover {
+            background: #e8e4dd;
+            color: #8a8076;
+            box-shadow: none;
+        }
+
+        .btn-avise-me {
+            width: 100%;
+            padding: 11px;
+            border-radius: 50px;
+            background: transparent;
+            color: var(--navy);
+            border: 2px solid var(--navy);
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.82rem;
+            letter-spacing: 0.3px;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            margin-top: auto;
+            text-decoration: none;
+        }
+        .btn-avise-me:hover {
+            background: var(--navy);
+            color: var(--white);
+            box-shadow: var(--shadow-md);
+        }
+
+        .coming-soon-price-msg {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--navy);
+            margin-top: 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .coming-soon-price-msg i {
+            color: var(--navy-medium);
+            font-size: 0.9rem;
+        }
+
+        .modal-overlay {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 2000;
+            display: flex; align-items: center; justify-content: center; padding: 20px;
+            opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .modal-overlay.active { opacity: 1; visibility: visible; }
+        .modal {
+            background: var(--white); border-radius: var(--radius-xl); max-width: 800px; width: 100%;
+            max-height: 90vh; overflow-y: auto; box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            display: flex; flex-direction: column; position: relative;
+        }
+        .modal-close {
+            position: absolute; top: 16px; right: 16px; background: var(--white-off); border: none;
+            width: 36px; height: 36px; border-radius: 50%; font-size: 1rem; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; color: var(--text-medium);
+            transition: var(--transition); z-index: 10;
+        }
+        .modal-close:hover { background: #f0e8e8; color: var(--navy-dark); }
+        .modal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; padding: 30px; }
+        .modal-image {
+            aspect-ratio: 1; border-radius: var(--radius-lg); position: relative;
+            background: #f0ece6; overflow: hidden;
+        }
+        .modal-image img {
+            position: absolute; inset: 0; width: 100%; height: 100%;
+            object-fit: cover; object-position: center; z-index: 2;
+        }
+        .modal-image .modal-placeholder-fallback {
+            position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+            background: linear-gradient(145deg, #f9f7f4 0%, #efe9e0 100%);
+            z-index: 1; font-size: 5rem; color: #b8a88a;
+        }
+        .modal-details { display: flex; flex-direction: column; gap: 16px; }
+        .modal-brand { font-size: 0.75rem; letter-spacing: 3px; color: var(--navy); text-transform: uppercase; font-weight: 600; }
+        .modal-name { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: var(--navy-dark); line-height: 1.2; }
+        .modal-category { font-size: 0.85rem; color: var(--text-light); }
+        .pyramid-section { margin-top: 8px; }
+        .pyramid-title { font-weight: 700; color: var(--navy-dark); margin-bottom: 10px; font-size: 0.95rem; display: flex; align-items: center; gap: 6px; }
+        .pyramid-visual { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
+        .pyramid-level {
+            display: flex; align-items: center; gap: 10px; padding: 8px 12px; border-radius: var(--radius-sm);
+            background: var(--white-off); font-size: 0.85rem;
+        }
+        .pyramid-level-top { border-left: 4px solid var(--navy-light); }
+        .pyramid-level-heart { border-left: 4px solid var(--navy); }
+        .pyramid-level-base { border-left: 4px solid var(--navy-dark); }
+        .pyramid-level strong { min-width: 55px; color: var(--navy-dark); }
+        .pyramid-level span { color: var(--text-medium); }
+        .modal-volume-options { display: flex; gap: 8px; margin: 8px 0; flex-wrap: wrap; }
+        .modal-volume-btn {
+            flex: 1; min-width: 70px; padding: 10px; border-radius: 50px; border: 1.5px solid #dcd5cc;
+            background: var(--white); cursor: pointer; font-weight: 600; font-size: 0.85rem;
+            color: var(--text-medium); transition: var(--transition); text-align: center;
+        }
+        .modal-volume-btn:hover { border-color: var(--navy); }
+        .modal-volume-btn.selected { background: var(--navy); color: var(--white); border-color: var(--navy); }
+        .modal-price { font-size: 1.5rem; font-weight: 700; color: var(--navy-dark); }
+        .modal-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 8px; }
+        .btn-modal {
+            flex: 1; padding: 14px 20px; border-radius: 50px; font-weight: 700; font-size: 0.95rem;
+            text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px;
+            transition: var(--transition); cursor: pointer; border: none;
+        }
+        .btn-whatsapp-modal { background: #25d366; color: #fff; box-shadow: 0 6px 20px rgba(37,211,102,0.35); }
+        .btn-whatsapp-modal:hover { background: #20bd5a; transform: translateY(-2px); }
+        .btn-cart-modal { background: var(--navy); color: var(--white); }
+        .btn-cart-modal:hover { background: var(--navy-light); }
+
+        .btn-modal.btn-coming-soon-modal {
+            background: #e8e4dd;
+            color: #8a8076;
+            cursor: not-allowed;
+            pointer-events: none;
+            border: 1px dashed #c4bbb0;
+            flex: 1;
+        }
+
+        .modal-unavailable-msg {
+            background: #fdf8f0;
+            border: 1px solid #e0d5c0;
+            border-radius: var(--radius-md);
+            padding: 16px 20px;
+            text-align: center;
+            color: var(--navy);
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 8px 0;
+        }
+        .modal-unavailable-msg i {
+            font-size: 1.3rem;
+            color: var(--navy-medium);
+        }
+
+        .cart-summary-section { background: var(--white); border-radius: var(--radius-lg); padding: 24px 28px; box-shadow: var(--shadow-md); margin-bottom: 40px; display: none; border: 1px solid #e8e4dd; }
+        .cart-summary-section.active { display: block; }
+        .cart-summary-title { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; color: var(--navy-dark); margin-bottom: 16px; display: flex; align-items: center; justify-content: space-between; }
+        .cart-items-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; max-height: 250px; overflow-y: auto; }
+        .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; background: var(--white-off); border-radius: var(--radius-sm); font-size: 0.9rem; }
+        .cart-item-info { display: flex; flex-direction: column; gap: 2px; }
+        .cart-item-name { font-weight: 600; color: var(--navy-dark); }
+        .cart-item-volume { font-size: 0.78rem; color: var(--text-light); }
+        .cart-item-price { font-weight: 700; color: var(--navy-dark); white-space: nowrap; }
+        .cart-item-remove { background: none; border: none; color: #c0392b; cursor: pointer; font-size: 0.85rem; padding: 4px 8px; border-radius: 4px; transition: var(--transition); }
+        .cart-item-remove:hover { background: #fdecea; }
+        .cart-total { font-weight: 700; font-size: 1.2rem; color: var(--navy-dark); text-align: right; margin-bottom: 16px; padding-top: 12px; border-top: 2px solid #e8e4dd; }
+
+        .customer-data-form {
+            background: #fafaf8;
+            border: 1px solid #e8e4dd;
+            border-radius: var(--radius-md);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .customer-data-form h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            color: var(--navy-dark);
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .customer-data-form .form-subtitle {
+            font-size: 0.78rem;
+            color: var(--text-light);
+            margin-bottom: 16px;
+            display: block;
+        }
+        .form-row {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            flex: 1;
+            min-width: 140px;
+        }
+        .form-group label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--navy-medium);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .form-group input {
+            padding: 10px 14px;
+            border: 1.5px solid #dcd5cc;
+            border-radius: var(--radius-sm);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.88rem;
+            color: var(--text-dark);
+            background: var(--white);
+            transition: var(--transition);
+            width: 100%;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--navy);
+            box-shadow: 0 0 0 3px rgba(10,26,48,0.08);
+        }
+        .form-group input::placeholder {
+            color: #b0a89e;
+            font-size: 0.82rem;
+        }
+        .required-dot {
+            color: #c0392b;
+            font-weight: 700;
+        }
+
+        .btn-whatsapp { width: 100%; padding: 16px 24px; border-radius: 50px; background: #25d366; color: #fff; border: none; cursor: pointer; font-weight: 700; font-size: 1rem; letter-spacing: 0.5px; transition: var(--transition); display: flex; align-items: center; justify-content: center; gap: 12px; text-decoration: none; box-shadow: 0 6px 20px rgba(37,211,102,0.35); }
+        .btn-whatsapp:hover { background: #20bd5a; transform: translateY(-2px); }
+        .cart-empty-msg { text-align: center; color: var(--text-light); padding: 20px; font-style: italic; }
+
+        .toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(100px); background: var(--navy-dark); color: var(--white); padding: 12px 24px; border-radius: 50px; font-weight: 600; font-size: 0.9rem; z-index: 9999; box-shadow: var(--shadow-lg); transition: transform 0.35s ease; display: flex; align-items: center; gap: 10px; border: 1px solid rgba(255,255,255,0.3); }
+        .toast.show { transform: translateX(-50%) translateY(0); }
+        .toast i { color: var(--white); }
+
+        .footer-mini { background: var(--navy-dark); color: var(--text-white); text-align: center; padding: 28px 20px; font-size: 0.9rem; border-top: 1px solid rgba(255,255,255,0.06); letter-spacing: 0.3px; }
+        .footer-mini p { opacity: 0.75; margin: 0; }
+        .footer-mini a { color: var(--white); text-decoration: none; font-weight: 500; }
+        .footer-mini a:hover { color: var(--white); text-decoration: underline; }
+
+        @media (max-width: 700px) {
+            .modal-grid { grid-template-columns: 1fr; }
+            .carousel-section { height: 45vh; min-height: 280px; }
+            .perfumes-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+            .section-title { font-size: 1.5rem; }
+            .brand-name-text { font-size: 1.8rem; }
+            .carousel-arrow.prev { left: 10px; } .carousel-arrow.next { right: 10px; }
+            .form-row { flex-direction: column; gap: 10px; }
+            .form-group { min-width: 100%; }
+            .tap-hint { font-size: 0.8rem; padding: 10px 16px; max-width: 90%; }
+        }
+        @media (max-width: 420px) {
+            .perfumes-grid { grid-template-columns: 1fr; }
+            .brand-name-text { font-size: 1.6rem; }
+            .carousel-section { height: 40vh; min-height: 250px; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo-area">
+                <a href="#" class="brand-name-text">G2decants</a>
+            </div>
+            <div class="header-icons">
+                <button class="cart-icon-btn" id="cartIconBtn"><i class="fas fa-shopping-bag"></i><span class="cart-badge" id="cartBadge" style="display:none;">0</span></button>
+            </div>
+        </div>
+    </header>
+
+    <section class="carousel-section" id="heroCarousel">
+        <div class="carousel-track" id="carouselTrack">
+            <div class="carousel-slide slide-1"><div class="slide-content"><i class="fas fa-truck-fast slide-icon"></i><h2>É feito <span>envios</span></h2><p>Para todo o Brasil.</p><a href="#perfumes-section" class="slide-btn"><i class="fas fa-spray-can"></i> Ver Catálogo</a></div></div>
+            <div class="carousel-slide slide-2"><div class="slide-content"><i class="fas fa-vial-circle-check slide-icon"></i><h2>Por que <span>Decants?</span></h2><p>Experimente fragrâncias exclusivas sem comprometer o orçamento.</p><a href="#perfumes-section" class="slide-btn"><i class="fas fa-spray-can"></i> Explorar Decants</a></div></div>
+            <div class="carousel-slide slide-3"><div class="slide-content"><i class="fas fa-shield-halved slide-icon"></i><h2>100% <span>Autêntico</span></h2><p>Todos os nossos perfumes são originais.</p><a href="#perfumes-section" class="slide-btn"><i class="fas fa-spray-can"></i> Conferir Catálogo</a></div></div>
+        </div>
+        <button class="carousel-arrow prev" id="carouselPrev"><i class="fas fa-chevron-left"></i></button>
+        <button class="carousel-arrow next" id="carouselNext"><i class="fas fa-chevron-right"></i></button>
+        <div class="carousel-controls" id="carouselDots"></div>
+    </section>
+
+    <main class="container" id="perfumes-section">
+        <h2 class="section-title">Nosso Catálogo</h2>
+        <p class="section-subtitle">Designer · Árabes · Nicho</p>
+        <div class="section-line"></div>
+        <div class="tap-hint">
+            <i class="fas fa-hand-pointer"></i>
+            <span>Toque na imagem do perfume para ver a pirâmide olfativa</span>
+        </div>
+        <div class="perfumes-grid" id="perfumesGrid"></div>
+        <div class="cart-summary-section" id="cartSummary">
+            <div class="cart-summary-title">🛒 Seu Pedido <button style="background:none;border:none;font-size:0.8rem;color:var(--text-light);cursor:pointer;" id="clearCartBtn"><i class="fas fa-trash-alt"></i> Limpar</button></div>
+            <ul class="cart-items-list" id="cartItemsList"><li class="cart-empty-msg">Seu carrinho está vazio.</li></ul>
+            <div class="cart-total" id="cartTotal">Total: R$ 0,00</div>
+            <div class="customer-data-form" id="customerDataForm">
+                <h4><i class="fas fa-map-marker-alt"></i> Dados para Frete</h4>
+                <span class="form-subtitle">Preencha para calcularmos o frete e emitir a nota fiscal.</span>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>CEP <span class="required-dot">*</span></label>
+                        <input type="text" id="customerCEP" placeholder="00000-000" maxlength="9">
+                    </div>
+                    <div class="form-group">
+                        <label>CPF/CNPJ <span class="required-dot">*</span></label>
+                        <input type="text" id="customerCPF" placeholder="000.000.000-00">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Nome Completo <span class="required-dot">*</span></label>
+                        <input type="text" id="customerNome" placeholder="Seu nome completo">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Bairro <span class="required-dot">*</span></label>
+                        <input type="text" id="customerBairro" placeholder="Seu bairro">
+                    </div>
+                    <div class="form-group">
+                        <label>Rua <span class="required-dot">*</span></label>
+                        <input type="text" id="customerRua" placeholder="Nome da rua">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Número <span class="required-dot">*</span></label>
+                        <input type="text" id="customerNumero" placeholder="Nº">
+                    </div>
+                    <div class="form-group">
+                        <label>Complemento</label>
+                        <input type="text" id="customerComplemento" placeholder="Casa, Apto, Bloco...">
+                    </div>
+                </div>
+            </div>
+            <a href="#" class="btn-whatsapp" id="btnFinalizar" target="_blank"><i class="fab fa-whatsapp"></i> Finalizar Compra pelo WhatsApp</a>
+        </div>
+    </main>
+
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal" id="perfumeModal">
+            <button class="modal-close" id="modalClose"><i class="fas fa-times"></i></button>
+            <div class="modal-grid">
+                <div class="modal-image" id="modalImage"></div>
+                <div class="modal-details">
+                    <div class="modal-brand" id="modalBrand"></div>
+                    <div class="modal-name" id="modalName"></div>
+                    <div class="modal-category" id="modalCategory"></div>
+                    <div class="pyramid-section">
+                        <div class="pyramid-title"><i class="fas fa-chart-pyramid"></i> Pirâmide Olfativa</div>
+                        <div class="pyramid-visual" id="pyramidContent"></div>
+                    </div>
+                    <div class="modal-volume-options" id="modalVolumeOptions"></div>
+                    <div class="modal-price" id="modalPrice"></div>
+                    <div class="modal-actions" id="modalActions"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer-mini"><p>&copy; 2026 <a href="#">G2 Decants</a>. Todos os direitos reservados.</p></footer>
+    <div class="toast" id="toast"><i class="fas fa-check-circle"></i><span id="toastMsg"></span></div>
+
+    <script>
+        (function() {
+              const perfumes = [
+                {
+                    id: 3, brand: 'Lattafa', name: 'Asad Bourbon', image:'https://acdn-us.mitiendanube.com/stores/006/591/490/products/perfume-asad-bourbon-br-ca24eab54d858c270617890012617190-1024-1024.webp', category: 'Árabe',
+                    prices: { '03ml': 16.00, '05ml': 24.00, '10ml': 44.00, '15ml': 64.00 },
+                    notes: { top: ['Ameixa Mirabelle', 'Pimenta Rosa', 'Lavanda'], heart: ['Cacau', 'Noz-moscada', 'Davana', 'Néctar de Pêssego'], base: ['Baunilha Bourbon', 'Âmbar', 'Vetiver'] }
+                },
+                {
+                    id: 7, brand: 'Bidaya', name: 'Blind Ecstasy', image:'https://fimgs.net/mdimg/perfume/o.126944.jpg', category: 'Árabe',
+                    prices: { '03ml': 20.50, '05ml': 31.50, '10ml': 59.00, '15ml': 90.50 },
+                    notes: { top: ['Bergamota', 'Conhaque', 'Toranja', 'Zimbro', 'Frutos Vermelhos'], heart: ['Sálvia Esclareia', 'Cipreste', 'Gengibre', 'Pimenta'], base: ['Âmbar', 'Cardamomo', 'Almíscar', 'Sândalo', 'Baunilha', 'Vetiver', 'Cedro da Virgínia'] }
+                },
+                {
+                    id: 8, brand: 'Afnan', name: '9PM', image:'https://decants.in/cdn/shop/files/NewProject_1_d66b3825-bcd8-4ec7-a75b-9fbb96f593b9.png?v=1775656199', category: 'Árabe',
+                    prices: { '03ml': 20.50, '05ml': 31.50, '10ml': 59.00, '15ml': 86.50 },
+                    notes: { top: ['Maçã', 'Canela', 'Lavanda', 'Bergamota'], heart: ['Flor de Laranjeira', 'Lírio-do-Vale'], base: ['Baunilha', 'Fava Tonka', 'Âmbar', 'Patchouli'] }
+                },
+                {
+                    id: 9, brand: 'Jean Paul Gaultier', name: 'Le Male Le Parfum', image:'https://panvelprd.vteximg.com.br/arquivos/ids/387307', category: 'Designer',
+                    prices: { '03ml': 21.70, '05ml': 33.50, '10ml': 63.00, '15ml': 92.50 },
+                    notes: { top: ['Cardamomo'], heart: ['Lavanda', 'Íris'], base: ['Baunilha', 'Notas Orientais', 'Notas Amadeiradas'] }
+                },
+                {
+                    id: 10, brand: 'Paco Rabanne', name: '1 Million Black', image: 'https://epocacosmeticos.vteximg.com.br/arquivos/ids/3216938/17896744180371.jpg?v=639256857832530000', category: 'Designer',
+                    prices: { '05ml': 37.50, '10ml': 75.00, '15ml': 112.50 },
+                    notes: { top: ['Abacaxi assado', 'Laranja Sanguínea', 'Cardamomo'], heart: ['Baunilha (Madagascar / Bourbon)', 'Coco', 'Sálvia Esclareia'], base: ['Madeira de Ébano', 'Patchouli', 'Fava Tonka'] }
+                },
+                {
+                    id: 11, brand: 'Khadlaj', name: 'Shiyaaka Sky', image: 'https://fimgs.net/mdimg/perfume/o.137096.jpg', category: 'Árabe',
+                    prices: { '03ml': 17.70, '05ml': 29.50, '10ml': 59.00, '15ml': 88.50 },
+                    notes: { top: ['Bergamota', 'Verbena', 'Mandarina'], heart: ['Néroli', 'Flor de Laranjeira', 'Gerânio', 'Acorde Verde'], base: ['Ambroxan', 'Vetiver', 'Almíscar', 'Sândalo'] }
+                },
+                {
+                    id: 12, brand: 'Goldfield & Banks', name: 'Ingenious Ginger', image: 'https://acdn-us.mitiendanube.com/stores/001/167/965/products/photoroom_20260105_080656-e758b1bb44a74b9d7d17676112221843-480-0.webp', category: 'Nicho',
+                    prices: { '03ml': 49.50, '05ml': 82.50, '10ml': 165.00, '15ml': 247.50 },
+                    notes: { top: ['Flor de Gengibre (Australiano)', 'Limão', 'Bergamota'], heart: ['Mandarina', 'Magnólia', 'Jasmim', 'Rosa'], base: ['Baunilha', 'Âmbar', 'Sândalo', 'Almíscar', 'Cashmeran', 'Patchouli'] }
+                }
+            ];
+            let cart = [];
+            const perfumesGrid = document.getElementById('perfumesGrid');
+            const cartSummary = document.getElementById('cartSummary');
+            const cartItemsList = document.getElementById('cartItemsList');
+            const cartTotalEl = document.getElementById('cartTotal');
+            const btnFinalizar = document.getElementById('btnFinalizar');
+            const cartBadge = document.getElementById('cartBadge');
+            const clearCartBtn = document.getElementById('clearCartBtn');
+            const toastEl = document.getElementById('toast');
+            const toastMsgEl = document.getElementById('toastMsg');
+            const cartIconBtn = document.getElementById('cartIconBtn');
+            let toastTimer;
+
+            function showToast(msg) {
+                toastMsgEl.textContent = msg;
+                toastEl.classList.add('show');
+                clearTimeout(toastTimer);
+                toastTimer = setTimeout(() => toastEl.classList.remove('show'), 2200);
+            }
+
+            function getCustomerData() {
+                return {
+                    cep: document.getElementById('customerCEP').value.trim(),
+                    cpf: document.getElementById('customerCPF').value.trim(),
+                    nome: document.getElementById('customerNome').value.trim(),
+                    bairro: document.getElementById('customerBairro').value.trim(),
+                    rua: document.getElementById('customerRua').value.trim(),
+                    numero: document.getElementById('customerNumero').value.trim(),
+                    complemento: document.getElementById('customerComplemento').value.trim()
+                };
+            }
+
+            function isCustomerDataComplete() {
+                const d = getCustomerData();
+                return d.cep && d.cpf && d.nome && d.bairro && d.rua && d.numero;
+            }
+
+            function buildCustomerDataString() {
+                const d = getCustomerData();
+                if (!isCustomerDataComplete()) return '';
+                let str = '%0A%0A📦 *DADOS PARA FRETE:*%0A';
+                str += `👤 Nome: ${d.nome}%0A`;
+                str += `📋 CPF/CNPJ: ${d.cpf}%0A`;
+                str += `📍 CEP: ${d.cep}%0A`;
+                str += `🏘️ Bairro: ${d.bairro}%0A`;
+                str += `🛣️ Rua: ${d.rua}%0A`;
+                str += `🔢 Número: ${d.numero}%0A`;
+                if (d.complemento) str += `📝 Complemento: ${d.complemento}%0A`;
+                return str;
+            }
+
+            function formatPrice(v) {
+                return 'R$ ' + v.toFixed(2).replace('.', ',');
+            }
+
+            function updateCartUI() {
+                const totalItems = cart.length;
+                cartBadge.textContent = totalItems;
+                cartBadge.style.display = totalItems > 0 ? 'flex' : 'none';
+                if (cart.length === 0) {
+                    cartItemsList.innerHTML = '<li class="cart-empty-msg">Seu carrinho está vazio.</li>';
+                    cartTotalEl.textContent = 'Total: R$ 0,00';
+                    btnFinalizar.href = '#';
+                    btnFinalizar.style.pointerEvents = 'none';
+                    btnFinalizar.style.opacity = '0.6';
+                    cartSummary.classList.remove('active');
+                } else {
+                    cartSummary.classList.add('active');
+                    cartItemsList.innerHTML = cart.map((item, idx) => `
+                        <li class="cart-item">
+                            <div class="cart-item-info"><span class="cart-item-name">${item.brand} - ${item.name}</span><span class="cart-item-volume">${item.volume}</span></div>
+                            <span class="cart-item-price">${formatPrice(item.price)}</span>
+                            <button class="cart-item-remove" data-index="${idx}"><i class="fas fa-times"></i></button>
+                        </li>`).join('');
+                    const total = cart.reduce((s,i) => s + i.price, 0);
+                    cartTotalEl.textContent = `Total: ${formatPrice(total)}`;
+
+                    const numero = '5511940101760';
+                    let msg = 'Olá, G2 Decants! Tenho interesse em levar os seguintes itens:%0A%0A';
+                    cart.forEach((item,i) => msg += `${i+1}. ${item.brand} - ${item.name} (${item.volume}) - ${formatPrice(item.price)}%0A`);
+                    msg += `%0ATotal: ${formatPrice(total)}`;
+                    const customerStr = buildCustomerDataString();
+                    if (customerStr) {
+                        msg += customerStr;
+                    }
+                    msg += '%0A%0AGostaria de fechar meu pedido.';
+                    btnFinalizar.href = `https://wa.me/${numero}?text=${msg}`;
+                    btnFinalizar.style.pointerEvents = 'auto';
+                    btnFinalizar.style.opacity = '1';
+                    document.querySelectorAll('.cart-item-remove').forEach(b => b.addEventListener('click', function() {
+                        cart.splice(parseInt(this.dataset.index),1); updateCartUI(); showToast('Item removido.');
+                    }));
+                }
+                cartBadge.classList.add('pulse'); setTimeout(() => cartBadge.classList.remove('pulse'),250);
+            }
+
+            function rebindCustomerFormListeners() {
+                const fields = ['customerCEP','customerCPF','customerNome','customerBairro','customerRua','customerNumero','customerComplemento'];
+                fields.forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el) {
+                        el.removeEventListener('input', updateCartUI);
+                        el.addEventListener('input', updateCartUI);
+                    }
+                });
+            }
+
+            function addToCart(perfume, volume) {
+                cart.push({ id: perfume.id, brand: perfume.brand, name: perfume.name, volume, price: perfume.prices[volume] });
+                updateCartUI();
+                showToast(`${perfume.name} (${volume}) adicionado!`);
+                setTimeout(() => cartSummary.scrollIntoView({ behavior:'smooth', block:'center' }),300);
+            }
+
+            function createImageHtml(imageUrl) {
+                const imgTag = imageUrl ? `<img src="${imageUrl}" alt="Perfume" onerror="this.classList.add('hidden')">` : '';
+                const placeholder = '<div class="placeholder-fallback"><i class="fas fa-spray-can"></i></div>';
+                return imgTag + placeholder;
+            }
+
+            function renderPerfumeCards() {
+                perfumesGrid.innerHTML = perfumes.map(p => {
+                    const vols = Object.keys(p.prices);
+                    const firstVol = vols[0];
+                    return `<div class="perfume-card" data-id="${p.id}">
+                        <div class="perfume-image" data-action="view">
+                            ${createImageHtml(p.image)}
+                            <div class="view-overlay"><i class="fas fa-eye"></i><span>Ver pirâmide</span></div>
+                        </div>
+                        <div class="perfume-info">
+                            <span class="perfume-brand">${p.brand} · ${p.category}</span>
+                            <h3 class="perfume-name">${p.name}</h3>
+                            <div class="volume-options">${vols.map(v => `<button class="volume-btn" data-volume="${v}" data-price="${p.prices[v].toFixed(2)}">${v}<small>R$${p.prices[v].toFixed(2).replace('.',',')}</small></button>`).join('')}</div>
+                            <span class="perfume-price" id="priceDisplay-${p.id}">${formatPrice(p.prices[firstVol])}</span>
+                            <button class="btn-add" data-id="${p.id}"><i class="fas fa-cart-plus"></i> Adicionar ao Carrinho</button>
+                        </div>
+                    </div>`;
+                }).join('');
+
+                document.querySelectorAll('.volume-btn').forEach(b => b.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const card = this.closest('.perfume-card');
+                    card.querySelectorAll('.volume-btn').forEach(x => x.classList.remove('selected'));
+                    this.classList.add('selected');
+                    document.getElementById('priceDisplay-'+card.dataset.id).textContent = formatPrice(parseFloat(this.dataset.price));
+                }));
+                document.querySelectorAll('.perfume-card').forEach(card => {
+                    const firstBtn = card.querySelector('.volume-btn');
+                    if (firstBtn) firstBtn.classList.add('selected');
+                });
+                document.querySelectorAll('.btn-add').forEach(b => b.addEventListener('click', function() {
+                    const card = this.closest('.perfume-card');
+                    const volBtn = card.querySelector('.volume-btn.selected');
+                    if (!volBtn) return showToast('Selecione uma volumetria.');
+                    const perfume = perfumes.find(p => p.id == card.dataset.id);
+                    addToCart(perfume, volBtn.dataset.volume);
+                }));
+                document.querySelectorAll('.perfume-image').forEach(img => img.addEventListener('click', function() {
+                    const id = this.closest('.perfume-card').dataset.id;
+                    openModal(perfumes.find(p => p.id == id));
+                }));
+            }
+
+            // MODAL
+            const modalOverlay = document.getElementById('modalOverlay');
+            const modalClose = document.getElementById('modalClose');
+            let currentModalPerfume = null;
+            let currentModalVolume = null;
+
+            function openModal(perfume) {
+                currentModalPerfume = perfume;
+                document.getElementById('modalBrand').textContent = perfume.brand;
+                document.getElementById('modalName').textContent = perfume.name;
+                document.getElementById('modalCategory').textContent = perfume.category;
+                const modalImage = document.getElementById('modalImage');
+                modalImage.innerHTML = (perfume.image ? `<img src="${perfume.image}" alt="${perfume.name}" onerror="this.classList.add('hidden')">` : '') + '<div class="modal-placeholder-fallback"><i class="fas fa-spray-can"></i></div>';
+                const pyramid = document.getElementById('pyramidContent');
+                pyramid.innerHTML = `
+                    <div class="pyramid-level pyramid-level-top"><strong>Topo</strong><span>${perfume.notes.top.join(', ')}</span></div>
+                    <div class="pyramid-level pyramid-level-heart"><strong>Coração</strong><span>${perfume.notes.heart.join(', ')}</span></div>
+                    <div class="pyramid-level pyramid-level-base"><strong>Fundo</strong><span>${perfume.notes.base.join(', ')}</span></div>`;
+
+                const volContainer = document.getElementById('modalVolumeOptions');
+                const priceEl = document.getElementById('modalPrice');
+                const actionsEl = document.getElementById('modalActions');
+                const vols = Object.keys(perfume.prices);
+
+                volContainer.innerHTML = vols.map(v => `<button class="modal-volume-btn" data-volume="${v}">${v} - ${formatPrice(perfume.prices[v])}</button>`).join('');
+                document.querySelectorAll('.modal-volume-btn').forEach(b => b.addEventListener('click', function() {
+                    document.querySelectorAll('.modal-volume-btn').forEach(x => x.classList.remove('selected'));
+                    this.classList.add('selected');
+                    currentModalVolume = this.dataset.volume;
+                    document.getElementById('modalPrice').textContent = formatPrice(perfume.prices[currentModalVolume]);
+                    updateModalWhatsapp();
+                }));
+                volContainer.querySelector('.modal-volume-btn').classList.add('selected');
+                currentModalVolume = vols[0];
+                priceEl.textContent = formatPrice(perfume.prices[vols[0]]);
+                updateModalWhatsapp();
+                actionsEl.innerHTML = `
+                    <a href="#" class="btn-modal btn-whatsapp-modal" id="modalWhatsappBtn" target="_blank"><i class="fab fa-whatsapp"></i> Comprar Agora</a>
+                    <button class="btn-modal btn-cart-modal" id="modalAddCartBtn"><i class="fas fa-cart-plus"></i> Adicionar ao Carrinho</button>`;
+                document.getElementById('modalAddCartBtn').onclick = () => { addToCart(perfume, currentModalVolume); closeModal(); };
+
+                modalOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function updateModalWhatsapp() {
+                if (!currentModalPerfume || !currentModalVolume) return;
+                const price = currentModalPerfume.prices[currentModalVolume];
+                const numero = '5511940101760';
+                const msg = `Olá! Tenho interesse no perfume ${currentModalPerfume.brand} - ${currentModalPerfume.name} (${currentModalVolume}) - ${formatPrice(price)}. Gostaria de finalizar o pedido.`;
+                const btn = document.getElementById('modalWhatsappBtn');
+                if (btn) btn.href = `https://wa.me/${numero}?text=${encodeURIComponent(msg)}`;
+            }
+
+            function closeModal() {
+                modalOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+            modalClose.addEventListener('click', closeModal);
+            modalOverlay.addEventListener('click', function(e) { if (e.target === modalOverlay) closeModal(); });
+
+            // Carrossel
+            const track = document.getElementById('carouselTrack');
+            const dotsContainer = document.getElementById('carouselDots');
+            const slides = document.querySelectorAll('.carousel-slide');
+            let currentSlide = 0, autoplay, transitioning = false;
+            for (let i=0; i<slides.length; i++) {
+                const dot = document.createElement('button'); dot.className = 'carousel-dot'+(i===0?' active':'');
+                dot.addEventListener('click', ()=>goToSlide(i)); dotsContainer.appendChild(dot);
+            }
+            const dots = document.querySelectorAll('.carousel-dot');
+            function updateCarousel() {
+                track.style.transform = `translateX(-${currentSlide*100}%)`;
+                dots.forEach((d,i)=>d.classList.toggle('active',i===currentSlide));
+                const cont = slides[currentSlide].querySelector('.slide-content');
+                if(cont) { cont.style.animation='none'; cont.offsetHeight; cont.style.animation='slideFadeIn 0.8s ease forwards'; }
+            }
+            function goToSlide(i) { if(transitioning||i===currentSlide) return; transitioning=true; currentSlide=i; updateCarousel(); setTimeout(()=>transitioning=false,600); resetAutoplay(); }
+            function nextSlide() { goToSlide((currentSlide+1)%slides.length); }
+            function prevSlide() { goToSlide((currentSlide-1+slides.length)%slides.length); }
+            function startAutoplay() { autoplay=setInterval(nextSlide,5000); }
+            function resetAutoplay() { clearInterval(autoplay); startAutoplay(); }
+            document.getElementById('carouselPrev').addEventListener('click',prevSlide);
+            document.getElementById('carouselNext').addEventListener('click',nextSlide);
+            const carouselSection = document.getElementById('heroCarousel');
+            carouselSection.addEventListener('mouseenter',()=>clearInterval(autoplay));
+            carouselSection.addEventListener('mouseleave',startAutoplay);
+            let touchX=0; carouselSection.addEventListener('touchstart',e=>touchX=e.changedTouches[0].screenX);
+            carouselSection.addEventListener('touchend',e=>{ if(Math.abs(touchX-e.changedTouches[0].screenX)>50) touchX-e.changedTouches[0].screenX>0?nextSlide():prevSlide(); });
+            startAutoplay(); updateCarousel();
+
+            renderPerfumeCards();
+            updateCartUI();
+            rebindCustomerFormListeners();
+
+            clearCartBtn.addEventListener('click',()=>{ if(cart.length){ cart=[]; updateCartUI(); showToast('Carrinho limpo.'); } });
+            cartIconBtn.addEventListener('click',()=>{ if(cart.length) cartSummary.scrollIntoView({behavior:'smooth',block:'center'}); else showToast('Carrinho vazio.'); });
+            btnFinalizar.addEventListener('click',function(e){
+                if(cart.length===0){
+                    e.preventDefault();
+                    showToast('Adicione itens primeiro.');
+                    return;
+                }
+                if(!isCustomerDataComplete()){
+                    e.preventDefault();
+                    showToast('⚠️ Preencha todos os campos de frete (exceto complemento).');
+                }
+            });
+        })();
+    </script>
+</body>
+</html>
